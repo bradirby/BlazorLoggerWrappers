@@ -1,1 +1,2 @@
 # LogWrappers
+Wrappers for Log4Net, Serilog, and the Console that all implement the same interface so the appropriate one can be injected where necessary, but all objects that require a logger can interact with a single interface
