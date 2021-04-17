@@ -1,24 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using BlazorLoggerWrappers.Shared;
 using Serilog;
 
-namespace LogWrappers
+namespace BlazorLoggerWrappers.Server
 {
-    public class SerilogLogger : IMessageLogger
+      public class SerilogLogger : IMessageLogger
     {
-        private ILogger seriLogger;
+        private  ILogger seriLogger;
 
-        public string GetNewMethodCallId()
-        {
-            return Guid.NewGuid().ToString().Substring(0, 8);
-        }
 
         public void SetLoggerType<T>()
         {
             seriLogger = Log.Logger.ForContext<T>();
         }
 
-     
+        public SerilogLogger( )
+        {
+            seriLogger = Log.Logger;
+        }
 
+        
         public void Debug(string messageTemplate)
         {
             seriLogger.Debug(messageTemplate);
@@ -36,7 +41,7 @@ namespace LogWrappers
 
         public void Debug<T0, T1, T2>(string messageTemplate, T0 propertyValue0, T1 propertyValue1, T2 propertyValue2)
         {
-            seriLogger.Debug(messageTemplate, propertyValue0, propertyValue1, propertyValue2);
+            seriLogger.Debug(messageTemplate, propertyValue0, propertyValue1,propertyValue2);
         }
 
         public void Debug(string messageTemplate, params object[] propertyValues)
@@ -78,22 +83,22 @@ namespace LogWrappers
 
         public void Information<T1>(string messageTemplate, T1 propertyValue)
         {
-            seriLogger.Information(messageTemplate, propertyValue);
+            seriLogger.Information(messageTemplate,propertyValue);
         }
 
         public void Information<T0, T1>(string messageTemplate, T0 propertyValue0, T1 propertyValue1)
         {
-            seriLogger.Information(messageTemplate, propertyValue0, propertyValue1);
+            seriLogger.Information(messageTemplate,propertyValue0,propertyValue1);
         }
 
         public void Information<T0, T1, T2>(string messageTemplate, T0 propertyValue0, T1 propertyValue1, T2 propertyValue2)
         {
-            seriLogger.Information(messageTemplate, propertyValue0, propertyValue1, propertyValue2);
+            seriLogger.Information(messageTemplate,propertyValue0, propertyValue1, propertyValue2);
         }
 
         public void Information(string messageTemplate, params object[] propertyValues)
         {
-            seriLogger.Information(messageTemplate, propertyValues);
+            seriLogger.Information(messageTemplate,propertyValues);
         }
 
         public void Information(Exception exception, string messageTemplate)
@@ -103,17 +108,17 @@ namespace LogWrappers
 
         public void Information<T1>(Exception exception, string messageTemplate, T1 propertyValue)
         {
-            seriLogger.Information(exception, messageTemplate, propertyValue);
+            seriLogger.Information(exception, messageTemplate,propertyValue);
         }
 
         public void Information<T0, T1>(Exception exception, string messageTemplate, T0 propertyValue0, T1 propertyValue1)
         {
-            seriLogger.Information(exception, messageTemplate, propertyValue0, propertyValue1);
+            seriLogger.Information(exception, messageTemplate,propertyValue0, propertyValue1);
         }
 
         public void Information<T0, T1, T2>(Exception exception, string messageTemplate, T0 propertyValue0, T1 propertyValue1, T2 propertyValue2)
         {
-            seriLogger.Information(exception, messageTemplate, propertyValue0, propertyValue1, propertyValue2);
+            seriLogger.Information(exception, messageTemplate,propertyValue0, propertyValue1, propertyValue2);
         }
 
         public void Information(Exception exception, string messageTemplate, params object[] propertyValues)
@@ -205,8 +210,7 @@ namespace LogWrappers
             seriLogger.Error(exception, "Exception Encountered");
         }
 
-
-        public void Error(Exception exception, string messageTemplate)
+        public void Error( Exception exception, string messageTemplate)
         {
             seriLogger.Error(exception, messageTemplate);
         }
@@ -235,7 +239,7 @@ namespace LogWrappers
 
         public void Fatal(string messageTemplate)
         {
-            seriLogger.Fatal(messageTemplate);
+            seriLogger.Fatal( messageTemplate);
         }
 
         public void Fatal<T1>(string messageTemplate, T1 propertyValue)
@@ -245,7 +249,7 @@ namespace LogWrappers
 
         public void Fatal<T0, T1>(string messageTemplate, T0 propertyValue0, T1 propertyValue1)
         {
-            seriLogger.Fatal(messageTemplate, propertyValue0, propertyValue1);
+            seriLogger.Fatal(messageTemplate,  propertyValue0, propertyValue1);
         }
 
         public void Fatal<T0, T1, T2>(string messageTemplate, T0 propertyValue0, T1 propertyValue1, T2 propertyValue2)
@@ -284,7 +288,7 @@ namespace LogWrappers
         }
 
 
-       
 
     }
 }
+
