@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlazorLoggerWrappers.Shared
 {
    public interface IMessageLogger
     {
+        int MaxHistoryToKeep { get; set; }
+        void WriteOutLogHistory();
+
         void SetLoggerType<T>();
 
         void Debug(string messageTemplate);
@@ -117,5 +116,6 @@ namespace BlazorLoggerWrappers.Shared
 
     }
 }
+
 
 
